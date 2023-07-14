@@ -1,0 +1,40 @@
+﻿@page
+@model CookieAuthentication.Pages.LoginModel
+@{
+}
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <h2 class="text-center mb-4">Welcome, @User.Identity.Name!</h2>
+                <form method="post" asp-page-handler="Logout">
+                    <button type="submit" class="btn btn-primary btn-block">Logout</button>
+                </form>
+            }
+            else
+            {
+                <h2 class="text-center mb-4">Login</h2>
+                <form method="post" asp-page-handler="Login">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group mb-3">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" id="username" name="LoginInput.Username">
+                        <span asp-validation-for="LoginInput.Username" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" id="password" name="LoginInput.Password">
+                        <span asp-validation-for="LoginInput.Password" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block mt-3">Login</button>
+                </form>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

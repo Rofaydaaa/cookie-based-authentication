@@ -1,1 +1,1 @@
-# cookie-based-authentication
+Login functionality using cookie-based authentication
